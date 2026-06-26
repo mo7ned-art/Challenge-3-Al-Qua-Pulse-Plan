@@ -1,0 +1,28 @@
+# v0 sandbox internal files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-devruntime.ts
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+
+# opencode runtime cache
+.opencode/
+
+# Environment variables
+.env*.local
+.env
+
+# Common ignores
+node_modules
+.next/
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+
+# Subagent working docs (interim scratch — keep sql-schema.md and similar permanent docs)
+docs/subagent-docs/explore-*.md
+docs/subagent-docs/debug-*.md
+docs/subagent-docs/plan-*.md
+docs/subagent-docs/research-*.md
