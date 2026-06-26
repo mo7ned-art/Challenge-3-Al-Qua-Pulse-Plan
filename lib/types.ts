@@ -112,9 +112,11 @@ export interface ValidationNote {
 export interface Opportunity {
   id: string
   title: string
+  title_ar: string
   slug: string
   category: string
   description: string
+  description_ar: string
   matching_response_ids: string[]
   response_count: number
   average_urgency: number
@@ -125,13 +127,20 @@ export interface Opportunity {
   confidence_level: Confidence
   top_area: string | null
   target_customer: string
+  target_customer_ar: string
   suggested_offer: string
+  suggested_offer_ar: string
   first_actions: string[]
+  first_actions_ar: string[]
   seven_day_checklist: string[]
+  seven_day_checklist_ar: string[]
   risks: string[]
+  risks_ar: string[]
   resources_needed: {
     people: string
+    people_ar: string
     tools: string
+    tools_ar: string
     complexity: "Low" | "Medium" | "High"
   }
   generated_by: "algorithm" | "ai" | "template"

@@ -41,9 +41,14 @@ export function ThanksClient() {
             <p className="text-sm text-muted-foreground mt-1">
               {t("survey.thanks.scan")}
             </p>
-            <div className="mt-4 flex items-center gap-3">
-              <div className="grid h-24 w-24 place-items-center rounded-lg border border-dashed border-border bg-muted text-xs text-muted-foreground text-center p-2">
-                QR placeholder
+            <div className="mt-4 flex items-center gap-4">
+              <div className="h-24 w-24 shrink-0 rounded-lg border border-border bg-white p-1.5 flex items-center justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(surveyUrl)}`}
+                  alt="Survey QR Code"
+                  className="h-full w-full object-contain"
+                />
               </div>
               <div className="flex-1 min-w-0">
                 <code className="block text-xs bg-muted rounded-md p-2 truncate" dir="ltr">
@@ -56,28 +61,28 @@ export function ThanksClient() {
                   className="mt-2"
                   onClick={copyLink}
                 >
-                  Copy link
+                  {t("generic.copyLink")}
                 </Button>
               </div>
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-3">
-            <Link href="/survey" className="block">
-              <Button variant="default" className="w-full">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link href="/survey" className="flex-1 block">
+              <Button variant="default" className="w-full h-auto py-2.5 whitespace-normal text-center flex items-center justify-center">
                 {t("survey.thanks.again")}
               </Button>
             </Link>
-            <Link href="/dashboard" className="block">
-              <Button variant="outline" className="w-full">
-                <BarChart3 className="h-4 w-4 me-2" />
-                {t("survey.thanks.dashboard")}
+            <Link href="/dashboard" className="flex-1 block">
+              <Button variant="outline" className="w-full h-auto py-2.5 whitespace-normal text-center flex items-center justify-center">
+                <BarChart3 className="h-4 w-4 shrink-0" />
+                <span className="ms-2">{t("survey.thanks.dashboard")}</span>
               </Button>
             </Link>
-            <Link href="/opportunities" className="block">
-              <Button variant="outline" className="w-full">
-                <Lightbulb className="h-4 w-4 me-2" />
-                {t("survey.thanks.opportunities")}
+            <Link href="/opportunities" className="flex-1 block">
+              <Button variant="outline" className="w-full h-auto py-2.5 whitespace-normal text-center flex items-center justify-center">
+                <Lightbulb className="h-4 w-4 shrink-0" />
+                <span className="ms-2">{t("survey.thanks.opportunities")}</span>
               </Button>
             </Link>
           </div>

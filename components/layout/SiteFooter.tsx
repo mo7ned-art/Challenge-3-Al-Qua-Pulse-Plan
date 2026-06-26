@@ -23,14 +23,12 @@ export function SiteFooter() {
             <li><Link className="text-muted-foreground hover:text-foreground" href="/survey">{t("nav.survey")}</Link></li>
             <li><Link className="text-muted-foreground hover:text-foreground" href="/dashboard">{t("nav.dashboard")}</Link></li>
             <li><Link className="text-muted-foreground hover:text-foreground" href="/opportunities">{t("nav.opportunities")}</Link></li>
-            <li><Link className="text-muted-foreground hover:text-foreground" href="/evidence">{t("nav.evidence")}</Link></li>
           </ul>
         </div>
         <div>
           <h3 className="text-sm font-semibold mb-3">{lang === "ar" ? "للفريق" : "For the team"}</h3>
           <ul className="space-y-2 text-sm">
             <li><Link className="text-muted-foreground hover:text-foreground" href="/admin">{t("nav.admin")}</Link></li>
-            <li><Link className="text-muted-foreground hover:text-foreground" href="/demo">{t("nav.demo")}</Link></li>
           </ul>
         </div>
       </div>

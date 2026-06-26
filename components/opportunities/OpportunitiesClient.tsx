@@ -44,9 +44,6 @@ export function OpportunitiesClient() {
               <Link href="/survey">
                 <Button>{t("nav.survey")}</Button>
               </Link>
-              <Link href="/api/seed">
-                <Button variant="outline">Seed demo data</Button>
-              </Link>
             </div>
           </CardContent>
         </Card>
@@ -90,8 +87,8 @@ function OpportunityCard({
             {t(`opp.confidence.${opp.confidence_level}`)}
           </Badge>
         </div>
-        <CardTitle className="text-lg mt-1">{opp.title}</CardTitle>
-        <p className="text-sm text-muted-foreground">{opp.description}</p>
+        <CardTitle className="text-lg mt-1">{lang === "ar" ? opp.title_ar : opp.title}</CardTitle>
+        <p className="text-sm text-muted-foreground">{lang === "ar" ? opp.description_ar : opp.description}</p>
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="flex items-center gap-3">
@@ -115,7 +112,7 @@ function OpportunityCard({
           <div className="font-semibold text-secondary-foreground mb-1">
             {t("opp.card.firstAction")}
           </div>
-          <div className="text-foreground/80 line-clamp-2">{opp.first_actions[0]}</div>
+          <div className="text-foreground/80 line-clamp-2">{lang === "ar" ? opp.first_actions_ar[0] : opp.first_actions[0]}</div>
         </div>
 
         <Link href={`/opportunities/${encodeURIComponent(opp.id)}`} className="block">

@@ -139,26 +139,4 @@ const SEEDS: Seed[] = [
     need_title: "Pet care tips", need_description: "Local advice for keeping cats and dogs healthy in summer heat.", urgency: 2, frequency: "monthly", has_local_provider: "not_sure", willingness_to_pay_range: "0" },
 ]
 
-export const SEED_RESPONSES: SurveyResponse[] = SEEDS.map((s, i) => ({
-  id: id(),
-  created_at: daysAgo(Math.floor((i / SEEDS.length) * 14)),
-  updated_at: daysAgo(Math.floor((i / SEEDS.length) * 14)),
-  source_type: "demo" as const,
-  language: s.language,
-  respondent_type: s.respondent_type,
-  area: s.area,
-  category: s.category,
-  need_title: s.need_title,
-  need_description: s.need_description,
-  urgency: s.urgency,
-  frequency: s.frequency,
-  has_local_provider: s.has_local_provider,
-  willingness_to_pay_range: s.willingness_to_pay_range,
-  contact_permission: s.contact_permission ?? false,
-  contact_name: s.contact_name ?? null,
-  contact_phone: s.contact_phone ?? null,
-  contact_email: null,
-  extra_note: s.extra_note ?? null,
-  is_private: false,
-  is_deleted: false,
-}))
+export const SEED_RESPONSES: SurveyResponse[] = []

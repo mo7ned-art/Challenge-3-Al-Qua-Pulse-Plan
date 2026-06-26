@@ -4,7 +4,7 @@ import { useMemo, useState } from "react"
 import Link from "next/link"
 import { useLang } from "@/lib/i18n/LanguageProvider"
 import { useResponses } from "@/lib/hooks/useData"
-import { applyFilters, computeCharts, computeKpis, dataMode, generateInsight, type DashboardFilters } from "@/lib/scoring/dashboard"
+import { applyFilters, computeCharts, computeKpis, generateInsight, type DashboardFilters } from "@/lib/scoring/dashboard"
 import { AREAS, CATEGORIES, FREQUENCIES, PROVIDER_ANSWERS, RESPONDENT_TYPES, areaLabel, categoryIcon, categoryLabel, labelFor } from "@/lib/constants"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -31,7 +31,7 @@ export function DashboardClient() {
   const kpis = useMemo(() => computeKpis(filtered, lang), [filtered, lang])
   const charts = useMemo(() => computeCharts(filtered, lang), [filtered, lang])
   const insight = useMemo(() => generateInsight(filtered, lang), [filtered, lang])
-  const mode = dataMode(responses)
+
 
   const chartColors = ["oklch(0.45 0.12 280)", "oklch(0.55 0.13 150)", "oklch(0.78 0.14 85)", "oklch(0.6 0.14 30)", "oklch(0.55 0.1 250)", "oklch(0.5 0.08 280)", "oklch(0.7 0.15 85)"]
 
@@ -48,9 +48,6 @@ export function DashboardClient() {
           <p className="text-muted-foreground text-sm md:text-base mt-1">{t("dash.subtitle")}</p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant={mode === "live" ? "default" : "secondary"} className="capitalize">
-            {mode === "demo" ? t("dash.dataBadge.demo") : mode === "live" ? t("dash.dataBadge.live") : t("dash.dataBadge.mixed")}
-          </Badge>
           <Button variant="outline" size="sm" onClick={reload}>
             <RefreshCw className="h-4 w-4 me-1.5" />
             {t("generic.loading") === "Loading…" ? "" : ""}
@@ -139,9 +136,6 @@ export function DashboardClient() {
               <Link href="/survey">
                 <Button>{t("nav.survey")}</Button>
               </Link>
-              <Link href="/api/seed">
-                <Button variant="outline">Seed demo data</Button>
-              </Link>
             </div>
           </CardContent>
         </Card>
@@ -171,7 +165,7 @@ export function DashboardClient() {
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={charts.demandByCategory} margin={{ top: 8, right: 8, bottom: 8, left: 8 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.9 0.02 80 / 0.6)" />
-                      <XAxis dataKey="category" tick={{ fontSize: 11 }} interval={0} angle={-20} textAnchor="end" height={60} />
+                      <XAxis dataKey="category" tick={{ fontSize: 10 }} interval={0} height={40} />
                       <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
                       <Tooltip />
                       <Bar dataKey="count" radius={[6, 6, 0, 0]}>

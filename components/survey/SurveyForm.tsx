@@ -310,6 +310,7 @@ export function SurveyForm() {
                   step={1}
                   value={[form.urgency]}
                   onValueChange={(v) => update("urgency", (Array.isArray(v) ? v[0] : v) ?? 3)}
+                  dir={dir}
                 />
                 <div className="mt-2 flex justify-between text-xs text-muted-foreground">
                   <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>

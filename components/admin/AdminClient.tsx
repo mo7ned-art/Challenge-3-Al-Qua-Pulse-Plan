@@ -28,8 +28,7 @@ export function AdminClient() {
   const [unlocking, setUnlocking] = useState(false)
   const [search, setSearch] = useState("")
   const [categoryFilter, setCategoryFilter] = useState("all")
-  const [seeding, setSeeding] = useState(false)
-  const [seedResult, setSeedResult] = useState<{ count: number; already: boolean } | null>(null)
+
 
   useEffect(() => {
     // Always probe — server decides if demo mode is on
@@ -71,20 +70,7 @@ export function AdminClient() {
     }
   }
 
-  async function handleSeed() {
-    setSeeding(true)
-    try {
-      const res = await fetch("/api/seed", { method: "POST" })
-      const data = await res.json()
-      setSeedResult(data)
-      toast.success(`Seeded ${data.count} demo responses`)
-      reload()
-    } catch (e) {
-      toast.error("Seed failed")
-    } finally {
-      setSeeding(false)
-    }
-  }
+
 
   async function handleDelete(id: string) {
     if (!confirm(t("admin.delete.confirm"))) return
@@ -118,8 +104,6 @@ export function AdminClient() {
     })
   }, [responses, search, categoryFilter])
 
-  const liveCount = responses.filter((r) => r.source_type === "live").length
-  const demoCount = responses.filter((r) => r.source_type === "demo").length
   const total = responses.length
   const lastUpdate = responses[0]?.created_at
 
@@ -182,37 +166,14 @@ export function AdminClient() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <Stat label={t("admin.stats.live")} value={liveCount} />
-            <Stat label={t("admin.stats.demo")} value={demoCount} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <Stat label={t("admin.stats.total")} value={total} />
             <Stat label={t("admin.stats.lastUpdate")} value={lastUpdate ? new Date(lastUpdate).toLocaleString(lang === "ar" ? "ar" : "en") : "—"} small />
           </div>
         </CardContent>
       </Card>
 
-      {/* Seed + manual add */}
-      <div className="grid md:grid-cols-2 gap-4">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base">{t("admin.seed.title")}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <p className="text-sm text-muted-foreground">{t("admin.seed.body")}</p>
-            <Button onClick={handleSeed} disabled={seeding}>
-              <Plus className="h-4 w-4 me-2" />
-              {seeding ? t("generic.loading") : t("admin.seed.button")}
-            </Button>
-            {seedResult && (
-              <div className="text-xs text-muted-foreground">
-                {seedResult.already ? t("admin.seed.already") : t("admin.seed.done", { n: seedResult.count })}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        <ManualAdd lang={lang} t={t} onCreated={reload} />
-      </div>
+      <ManualAdd lang={lang} t={t} onCreated={reload} />
 
       {/* Table */}
       <Card>
@@ -259,7 +220,6 @@ export function AdminClient() {
                     <th className="py-2 px-2 text-start">Area</th>
                     <th className="py-2 px-2 text-start">Urg</th>
                     <th className="py-2 px-2 text-start">Freq</th>
-                    <th className="py-2 px-2 text-start">Source</th>
                     <th className="py-2 ps-2 text-start"></th>
                   </tr>
                 </thead>
@@ -281,11 +241,7 @@ export function AdminClient() {
                         <Badge variant={r.urgency >= 4 ? "destructive" : r.urgency >= 3 ? "default" : "secondary"}>{r.urgency}</Badge>
                       </td>
                       <td className="py-2 px-2 text-xs">{labelFor(r.frequency, lang)}</td>
-                      <td className="py-2 px-2">
-                        <Badge variant={r.source_type === "demo" ? "secondary" : "default"} className="capitalize">
-                          {r.source_type}
-                        </Badge>
-                      </td>
+
                       <td className="py-2 ps-2">
                         <Button variant="ghost" size="icon" onClick={() => handleDelete(r.id)} aria-label="Delete">
                           <Trash2 className="h-4 w-4 text-destructive" />

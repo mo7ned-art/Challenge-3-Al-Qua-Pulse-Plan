@@ -1,6 +1,7 @@
 "use client"
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react"
+import { DirectionProvider } from "@base-ui/react/direction-provider"
 import type { Language } from "../types"
 import { t as translate, format as formatT, type DictKey } from "./dict"
 
@@ -67,7 +68,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     [lang, setLang, toggle],
   )
 
-  return <LangContext.Provider value={value}>{children}</LangContext.Provider>
+  return (
+    <LangContext.Provider value={value}>
+      <DirectionProvider direction={lang === "ar" ? "rtl" : "ltr"}>
+        {children}
+      </DirectionProvider>
+    </LangContext.Provider>
+  )
 }
 
 export function useLang(): LangContextValue {

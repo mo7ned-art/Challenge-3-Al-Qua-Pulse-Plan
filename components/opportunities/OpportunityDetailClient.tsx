@@ -92,8 +92,8 @@ export function OpportunityDetailClient({ id }: { id: string }) {
               {t(`opp.confidence.${opp.confidence_level}`)}
             </Badge>
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{opp.title}</h1>
-          <p className="text-muted-foreground mt-2 max-w-2xl">{opp.description}</p>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">{lang === "ar" ? opp.title_ar : opp.title}</h1>
+          <p className="text-muted-foreground mt-2 max-w-2xl">{lang === "ar" ? opp.description_ar : opp.description}</p>
           <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
             <Badge variant="default">Score {opp.opportunity_score}/100</Badge>
             <Badge variant="outline">{opp.response_count} {t("opp.card.responses")}</Badge>
@@ -168,7 +168,7 @@ export function OpportunityDetailClient({ id }: { id: string }) {
             </CardHeader>
             <CardContent>
               <ol className="space-y-2 list-decimal ps-5 text-sm">
-                {opp.first_actions.map((a, i) => (
+                {(lang === "ar" ? opp.first_actions_ar : opp.first_actions).map((a, i) => (
                   <li key={i} className="leading-relaxed">{a}</li>
                 ))}
               </ol>
@@ -177,7 +177,7 @@ export function OpportunityDetailClient({ id }: { id: string }) {
                 <ListChecks className="h-4 w-4 text-gold" /> {t("opp.detail.checklist")}
               </h3>
               <ol className="space-y-1.5 text-xs text-muted-foreground">
-                {opp.seven_day_checklist.map((a, i) => (
+                {(lang === "ar" ? opp.seven_day_checklist_ar : opp.seven_day_checklist).map((a, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <input type="checkbox" className="mt-0.5" />
                     <span>{a}</span>
@@ -260,8 +260,8 @@ export function OpportunityDetailClient({ id }: { id: string }) {
                 <Target className="h-4 w-4" /> {t("opp.detail.target")}
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-sm">{opp.target_customer}</p>
+            <CardContent className="p-6">
+              <p className="text-sm">{lang === "ar" ? opp.target_customer_ar : opp.target_customer}</p>
             </CardContent>
           </Card>
 
@@ -272,7 +272,7 @@ export function OpportunityDetailClient({ id }: { id: string }) {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm">{opp.suggested_offer}</p>
+              <p className="text-sm">{lang === "ar" ? opp.suggested_offer_ar : opp.suggested_offer}</p>
             </CardContent>
           </Card>
 
@@ -284,7 +284,7 @@ export function OpportunityDetailClient({ id }: { id: string }) {
             </CardHeader>
             <CardContent>
               <ul className="space-y-1.5 text-sm">
-                {opp.risks.map((r, i) => (
+                {(lang === "ar" ? opp.risks_ar : opp.risks).map((r, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <AlertTriangle className="h-3.5 w-3.5 mt-0.5 text-destructive shrink-0" />
                     <span>{r}</span>
@@ -302,15 +302,15 @@ export function OpportunityDetailClient({ id }: { id: string }) {
             </CardHeader>
             <CardContent className="space-y-2 text-sm">
               <div>
-                <div className="text-xs font-semibold text-muted-foreground">People</div>
-                <div>{opp.resources_needed.people}</div>
+                <div className="text-xs font-semibold text-muted-foreground">{t("opp.detail.resources.people")}</div>
+                <div>{lang === "ar" ? opp.resources_needed.people_ar : opp.resources_needed.people}</div>
               </div>
               <div>
-                <div className="text-xs font-semibold text-muted-foreground">Tools</div>
-                <div>{opp.resources_needed.tools}</div>
+                <div className="text-xs font-semibold text-muted-foreground">{t("opp.detail.resources.tools")}</div>
+                <div>{lang === "ar" ? opp.resources_needed.tools_ar : opp.resources_needed.tools}</div>
               </div>
               <div>
-                <div className="text-xs font-semibold text-muted-foreground">Complexity</div>
+                <div className="text-xs font-semibold text-muted-foreground">{t("opp.detail.resources.complexity")}</div>
                 <Badge variant="secondary">{t(`opp.detail.complexity.${opp.resources_needed.complexity}`)}</Badge>
               </div>
             </CardContent>
