@@ -31,7 +31,7 @@ export function SiteHeader() {
           <span className="flex flex-col leading-none">
             <span className="text-base font-semibold tracking-tight">{t("brand.name")}</span>
             <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-              {lang === "ar" ? "العين • القوع" : "Al Ain • Al Qua'a"}
+              {lang === "ar" ? "العين • Al Qua'a" : "Al Ain • Al Qua'a"}
             </span>
           </span>
         </Link>

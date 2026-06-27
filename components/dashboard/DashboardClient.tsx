@@ -246,7 +246,7 @@ export function DashboardClient() {
                 <CardTitle className="text-base">{t("dash.chart.urgencyByCategory")}</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-72">
+                <div className="h-[28rem]">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={charts.urgencyByCategory} layout="vertical" margin={{ top: 8, right: 16, bottom: 8, left: 8 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.9 0.02 80 / 0.6)" />
@@ -255,6 +255,7 @@ export function DashboardClient() {
                         type="category"
                         dataKey="category"
                         width={160}
+                        interval={0}
                         tick={({ x, y, payload }: { x: number; y: number; payload: { value: string } }) => {
                           const label = payload.value.length > 22 ? payload.value.slice(0, 20) + "…" : payload.value
                           return (

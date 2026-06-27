@@ -20,7 +20,7 @@ export const RESPONDENT_TYPES: Option[] = [
 ]
 
 export const AREAS: Option[] = [
-  { value: "al_quaa_center", en: "Al Qua'a center", ar: "مركز القوع" },
+  { value: "al_quaa_center", en: "Al Qua'a center", ar: "مركز Al Qua'a" },
   { value: "farms_north", en: "Farms north", ar: "المزارع الشمالية" },
   { value: "farms_south", en: "Farms south", ar: "المزارع الجنوبية" },
   { value: "roadside", en: "Roadside / highway area", ar: "منطقة الطريق السريع" },
