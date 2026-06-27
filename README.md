@@ -70,9 +70,7 @@ The app:
 | Ranked opportunity engine + cards | `/opportunities` | ✅ |
 | Opportunity detail page (evidence, actions, risks) | `/opportunities/[id]` | ✅ |
 | Founder brief (AI with template fallback) | inline | ✅ |
-| Admin: PIN auth, response table, manual add, seed | `/admin` | ✅ |
-| Evidence & validation page | `/evidence` | ✅ |
-| Guided judge demo flow | `/demo` | ✅ |
+| Admin: PIN auth, response table, manual add | `/admin` | ✅ |
 
 ---
 
@@ -84,7 +82,6 @@ The app:
 4. **Opportunity engine** clusters responses by category + keyword, scores each cluster.
 5. **Opportunity card** shows score, confidence, first action, and links to detail.
 6. **Founder brief** button generates an AI brief (or a template brief if no AI key).
-7. **Evidence page** shows live metrics, testable claims, methodology, limitations.
 
 ### Opportunity scoring (out of 100)
 
@@ -165,10 +162,7 @@ in-memory data. All public pages remain functional.
 The app includes 40 realistic, clearly-labeled demo responses covering all 10
 categories and 7 areas of the survey. They are auto-loaded on first request.
 
-To re-seed or top up via the UI:
-- Open `/admin`
-- Click **Seed 40 demo responses**
-- (or hit `POST /api/seed` directly)
+The system automatically populates the seed data on the first request if no live data is found in storage.
 
 To run the database in Supabase instead, see `docs/subagent-docs/sql-schema.md`
 or run the following schema:
@@ -209,9 +203,6 @@ create table public.survey_responses (
 4. **Opportunities** (`/opportunities`) — see the top 17 ranked business ideas.
 5. **Opportunity detail** (`/opportunities/<id>`) — see evidence, score breakdown, first
    actions, 7-day validation plan, related responses, and generate a founder brief.
-6. **Evidence** (`/evidence`) — see testable claims, methodology, limitations, scalability.
-
-For a guided 90-second walkthrough, open `/demo`.
 
 ---
 
@@ -235,7 +226,7 @@ For a guided 90-second walkthrough, open `/demo`.
   by default. No contact info appears in the public dashboard, opportunities, or
   evidence page.
 - **Transparency**: Every opportunity score is broken into 5 visible components in the UI.
-- **Methodology**: documented on `/evidence`.
+- **Methodology**: based on the 100-point scoring algorithm.
 - **Limitations**: small sample size, demo data is not market proof, offline validation
   is still required before launching any business.
 
@@ -284,13 +275,10 @@ app/
   opportunities/page.tsx    # Ranked opportunity list
   opportunities/[id]/page.tsx  # Opportunity detail
   admin/page.tsx            # Admin dashboard
-  evidence/page.tsx         # Testable claims, methodology
-  demo/page.tsx             # Guided judge demo
   api/
     responses/              # Create + list responses
     opportunities/          # Computed opportunity list
     insights/               # Founder brief (AI or template)
-    seed/                   # Seed demo data
     admin/responses/        # Admin: list/delete
 
 lib/
@@ -309,8 +297,6 @@ components/
   dashboard/                # KPI cards, filters, charts, tables
   opportunities/            # Cards + detail
   admin/                    # Response table, manual add
-  evidence/                 # Claims, metrics, methodology
-  demo/                     # Demo flow
   ui/                       # shadcn/ui primitives
 
 public/                     # Icons, logos
