@@ -50,8 +50,7 @@ export function DashboardClient() {
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" onClick={reload}>
             <RefreshCw className="h-4 w-4 me-1.5" />
-            {t("generic.loading") === "Loading…" ? "" : ""}
-            <span>Refresh</span>
+            <span>{t("dash.refresh")}</span>
           </Button>
         </div>
       </div>
@@ -161,11 +160,33 @@ export function DashboardClient() {
                 <CardTitle className="text-base">{t("dash.chart.demandByCategory")}</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-72">
+                <div className="h-80">
                   <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={charts.demandByCategory} margin={{ top: 8, right: 8, bottom: 8, left: 8 }}>
+                    <BarChart data={charts.demandByCategory} margin={{ top: 8, right: 16, bottom: 60, left: 8 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.9 0.02 80 / 0.6)" />
-                      <XAxis dataKey="category" tick={{ fontSize: 10 }} interval={0} height={40} />
+                      <XAxis
+                        dataKey="category"
+                        interval={0}
+                        height={70}
+                        tick={({ x, y, payload }: { x: number; y: number; payload: { value: string } }) => {
+                          const label = payload.value.length > 18 ? payload.value.slice(0, 16) + "…" : payload.value
+                          return (
+                            <g transform={`translate(${x},${y})`}>
+                              <text
+                                x={0}
+                                y={0}
+                                dy={10}
+                                textAnchor="end"
+                                fill="currentColor"
+                                fontSize={10}
+                                transform="rotate(-40)"
+                              >
+                                {label}
+                              </text>
+                            </g>
+                          )
+                        }}
+                      />
                       <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
                       <Tooltip />
                       <Bar dataKey="count" radius={[6, 6, 0, 0]}>
@@ -225,12 +246,24 @@ export function DashboardClient() {
                 <CardTitle className="text-base">{t("dash.chart.urgencyByCategory")}</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-64">
+                <div className="h-72">
                   <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={charts.urgencyByCategory} layout="vertical" margin={{ top: 8, right: 16, bottom: 8, left: 24 }}>
+                    <BarChart data={charts.urgencyByCategory} layout="vertical" margin={{ top: 8, right: 16, bottom: 8, left: 8 }}>
                       <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.9 0.02 80 / 0.6)" />
                       <XAxis type="number" domain={[0, 5]} tick={{ fontSize: 11 }} />
-                      <YAxis type="category" dataKey="category" tick={{ fontSize: 11 }} width={150} />
+                      <YAxis
+                        type="category"
+                        dataKey="category"
+                        width={160}
+                        tick={({ x, y, payload }: { x: number; y: number; payload: { value: string } }) => {
+                          const label = payload.value.length > 22 ? payload.value.slice(0, 20) + "…" : payload.value
+                          return (
+                            <text x={x} y={y} dy={4} textAnchor="end" fill="currentColor" fontSize={10}>
+                              {label}
+                            </text>
+                          )
+                        }}
+                      />
                       <Tooltip />
                       <Bar dataKey="avgUrgency" fill="oklch(0.55 0.13 150)" radius={[0, 6, 6, 0]} />
                     </BarChart>
@@ -295,12 +328,12 @@ export function DashboardClient() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="text-start text-xs text-muted-foreground border-b border-border">
-                    <th className="py-2 pe-2 text-start font-medium">Need</th>
+                    <th className="py-2 pe-2 text-start font-medium">{t("dash.table.need")}</th>
                     <th className="py-2 px-2 text-start font-medium">{t("dash.filter.category")}</th>
                     <th className="py-2 px-2 text-start font-medium">{t("dash.filter.area")}</th>
                     <th className="py-2 px-2 text-start font-medium">{t("dash.filter.provider")}</th>
-                    <th className="py-2 px-2 text-start font-medium">Urgency</th>
-                    <th className="py-2 ps-2 text-start font-medium">Date</th>
+                    <th className="py-2 px-2 text-start font-medium">{t("dash.table.urgency")}</th>
+                    <th className="py-2 ps-2 text-start font-medium">{t("dash.table.date")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -345,7 +378,9 @@ export function DashboardClient() {
                 </tbody>
               </table>
               {filtered.length > 20 && (
-                <div className="text-xs text-muted-foreground mt-3">+ {filtered.length - 20} more</div>
+                <div className="text-xs text-muted-foreground mt-3">
+                  {lang === "ar" ? `+ ${filtered.length - 20} أخرى` : `+ ${filtered.length - 20} more`}
+                </div>
               )}
             </CardContent>
           </Card>

@@ -137,6 +137,76 @@ const SEEDS: Seed[] = [
   // Other
   { language: "en", respondent_type: "resident", area: "farms_south", category: "other",
     need_title: "Pet care tips", need_description: "Local advice for keeping cats and dogs healthy in summer heat.", urgency: 2, frequency: "monthly", has_local_provider: "not_sure", willingness_to_pay_range: "0" },
+
+  // ── 20 additional demo submissions ──────────────────────────────
+  { language: "ar", respondent_type: "resident", area: "farms_north", category: "food_groceries",
+    need_title: "توصيل خضار طازجة", need_description: "أحتاج توصيل خضار طازجة من سوق العين كل ثلاثاء", urgency: 4, frequency: "weekly", has_local_provider: "no", willingness_to_pay_range: "25_50" },
+  { language: "en", respondent_type: "entrepreneur", area: "al_quaa_center", category: "tourism_stargazing",
+    need_title: "Desert camping tour operator", need_description: "Need someone to organise overnight desert camping experiences for families and tourists.", urgency: 3, frequency: "seasonal", has_local_provider: "no", willingness_to_pay_range: "250_plus" },
+  { language: "ar", respondent_type: "farmer", area: "farms_south", category: "farm_camel",
+    need_title: "تأجير معدات حراثة", need_description: "أحتاج تأجير محراث صغير لفترة قصيرة بدل الشراء", urgency: 3, frequency: "seasonal", has_local_provider: "not_sure", willingness_to_pay_range: "100_250" },
+  { language: "en", respondent_type: "student", area: "near_school", category: "education_tutoring",
+    need_title: "Arabic calligraphy class", need_description: "Weekend class for kids to learn Arabic calligraphy near the school area.", urgency: 2, frequency: "weekly", has_local_provider: "no", willingness_to_pay_range: "50_100" },
+  { language: "ar", respondent_type: "resident", area: "al_quaa_center", category: "repairs",
+    need_title: "تنظيف خزانات المياه", need_description: "خدمة تنظيف وتعقيم خزانات المياه المنزلية", urgency: 4, frequency: "seasonal", has_local_provider: "not_sure", willingness_to_pay_range: "100_250" },
+  { language: "en", respondent_type: "visitor", area: "roadside", category: "food_groceries",
+    need_title: "Roadside café or food truck", need_description: "A small café or food truck at the highway rest stop for travellers.", urgency: 3, frequency: "one_time", has_local_provider: "no", willingness_to_pay_range: "25_50" },
+  { language: "ar", respondent_type: "resident", area: "farms_north", category: "health_wellness",
+    need_title: "صيدلية متنقلة", need_description: "صيدلية متنقلة تمر على المزارع مرتين في الأسبوع", urgency: 5, frequency: "weekly", has_local_provider: "no", willingness_to_pay_range: "50_100" },
+  { language: "en", respondent_type: "resident", area: "al_quaa_center", category: "transport_delivery",
+    need_title: "Shared ride to Abu Dhabi", need_description: "Monthly shared ride to Abu Dhabi for visa and ministry appointments.", urgency: 3, frequency: "monthly", has_local_provider: "not_sure", willingness_to_pay_range: "50_100" },
+  { language: "ar", respondent_type: "student", area: "near_school", category: "education_tutoring",
+    need_title: "دورة تصميم جرافيك", need_description: "دورة أساسية في التصميم الجرافيكي للشباب خلال العطلة الصيفية", urgency: 2, frequency: "seasonal", has_local_provider: "no", willingness_to_pay_range: "100_250" },
+  { language: "en", respondent_type: "farmer", area: "farms_south", category: "farm_camel",
+    need_title: "Camel milk collection route", need_description: "A daily morning route to collect camel milk from farms and sell in Al Ain.", urgency: 4, frequency: "daily", has_local_provider: "no", willingness_to_pay_range: "100_250", contact_permission: true, contact_name: "Khalid", contact_phone: "+9715xxxxxxxx" },
+  { language: "ar", respondent_type: "resident", area: "al_quaa_center", category: "events_community",
+    need_title: "سوق شعبي أسبوعي", need_description: "سوق صغير كل جمعة لبيع المنتجات المحلية والحرف اليدوية", urgency: 3, frequency: "weekly", has_local_provider: "no", willingness_to_pay_range: "under_25" },
+  { language: "en", respondent_type: "resident", area: "farms_north", category: "repairs",
+    need_title: "Solar panel cleaning", need_description: "Regular cleaning of solar panels on farm rooftops, covered in dust.", urgency: 3, frequency: "monthly", has_local_provider: "no", willingness_to_pay_range: "50_100" },
+  { language: "ar", respondent_type: "resident", area: "farms_south", category: "transport_delivery",
+    need_title: "توصيل طلبات أمازون", need_description: "نقطة استلام محلية لطلبات التسوق الإلكتروني بدلاً من السفر للعين", urgency: 4, frequency: "weekly", has_local_provider: "no", willingness_to_pay_range: "under_25" },
+  { language: "en", respondent_type: "entrepreneur", area: "al_quaa_center", category: "government_paperwork",
+    need_title: "Business license consultation", need_description: "Help understanding trade license requirements for a small home kitchen.", urgency: 4, frequency: "one_time", has_local_provider: "not_sure", willingness_to_pay_range: "50_100" },
+  { language: "ar", respondent_type: "farmer", area: "farms_north", category: "farm_camel",
+    need_title: "تركيب مظلات للإبل", need_description: "تركيب مظلات حماية من الشمس فوق حظائر الإبل", urgency: 4, frequency: "one_time", has_local_provider: "not_sure", willingness_to_pay_range: "250_plus" },
+  { language: "en", respondent_type: "resident", area: "near_school", category: "health_wellness",
+    need_title: "Kids swimming lessons", need_description: "Safe swimming lessons for children near the community area.", urgency: 2, frequency: "weekly", has_local_provider: "no", willingness_to_pay_range: "50_100" },
+  { language: "ar", respondent_type: "resident", area: "al_quaa_center", category: "food_groceries",
+    need_title: "مطعم وجبات منزلية", need_description: "مطبخ منزلي يوفر وجبات يومية طازجة بأسعار معقولة", urgency: 3, frequency: "daily", has_local_provider: "no", willingness_to_pay_range: "25_50" },
+  { language: "en", respondent_type: "visitor", area: "roadside", category: "tourism_stargazing",
+    need_title: "Guided nature walk", need_description: "A weekend guided walk through desert trails with a local naturalist.", urgency: 2, frequency: "seasonal", has_local_provider: "no", willingness_to_pay_range: "50_100" },
+  { language: "ar", respondent_type: "resident", area: "farms_south", category: "repairs",
+    need_title: "صيانة مضخات المياه", need_description: "فني متخصص في إصلاح وصيانة مضخات مياه الآبار والمزارع", urgency: 5, frequency: "monthly", has_local_provider: "not_sure", willingness_to_pay_range: "100_250" },
+  { language: "en", respondent_type: "student", area: "al_quaa_center", category: "events_community",
+    need_title: "Youth coding club", need_description: "A weekly meetup where kids learn basic coding and robotics.", urgency: 2, frequency: "weekly", has_local_provider: "no", willingness_to_pay_range: "50_100" },
 ]
 
-export const SEED_RESPONSES: SurveyResponse[] = []
+// Build SurveyResponse objects from the seed entries
+export const SEED_RESPONSES: SurveyResponse[] = SEEDS.map((s, i) => {
+  const now = new Date()
+  now.setDate(now.getDate() - 14 + Math.floor(i * 14 / SEEDS.length)) // spread over 14 days
+  now.setHours(7 + (i % 14), (i * 17) % 60, 0, 0)
+  return {
+    id: id(),
+    created_at: now.toISOString(),
+    updated_at: now.toISOString(),
+    source_type: "demo" as const,
+    language: s.language,
+    respondent_type: s.respondent_type,
+    area: s.area,
+    category: s.category,
+    need_title: s.need_title,
+    need_description: s.need_description,
+    urgency: s.urgency,
+    frequency: s.frequency,
+    has_local_provider: s.has_local_provider,
+    willingness_to_pay_range: s.willingness_to_pay_range,
+    contact_permission: s.contact_permission ?? false,
+    contact_name: s.contact_name ?? null,
+    contact_phone: s.contact_phone ?? null,
+    contact_email: null,
+    extra_note: s.extra_note ?? null,
+    is_private: !(s.contact_permission ?? false),
+    is_deleted: false,
+  }
+})
